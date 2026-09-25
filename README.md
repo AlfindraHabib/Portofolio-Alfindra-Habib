@@ -1,32 +1,34 @@
 # Portfolio Website
+
 <div align="center">
   <pre>
-    _____           _    __      _ _       
-   |  __ \         | |  / _|    | (_)      
-   | |__) |__  _ __| |_| |_ ___ | |_  ___  
-   |  ___/ _ \| '__| __|  _/ _ \| | |/ _ \ 
-   | |  | (_) | |  | |_| || (_) | | | (_) |
-   |_|   \___/|_|   \__|_| \___/|_|_|\___/ 
+    _    _  __ _           _         
+   / \  | |/ _(_)_ __   __| |_ __ __ _
+  / _ \ | | |_| | '_ \ / _` | '__/ _` |
+ / ___ \| |  _| | | | | (_| | | | (_| |
+/_/   \_\_|_| |_|_| |_|\__,_|_|  \__,_|
   </pre>
 </div>
 
- 
-Welcome to my **portfolio website**! This site showcases my skills, experience, education, projects, and how to get in touch with me. It's built with **React** and **Vite** for a fast, modern web experience. You can explore my work, learn about my journey, and contact me directly.
+Selamat datang di **portfolio website** saya! Situs ini menampilkan profil, pengalaman, pendidikan, sertifikat & pencapaian, proyek, serta cara menghubungi saya. Dibangun dengan **React** dan **Vite** untuk pengalaman web yang cepat dan modern.
 
 ---
 
-## Demo
+## Tentang Saya
 
-![Portfolio Demo](https://i.postimg.cc/Dfr5jCQp/Screenshot-2025-01-02-120901.png)
+Halo! Saya **Alfindra Habib Nugroho**, mahasiswa S1 Informatika di Universitas Jenderal Achmad Yani Yogyakarta, fokus pada pengembangan aplikasi web & mobile menggunakan Laravel, React, Flask, dan Flutter, dengan riset di bidang Machine Learning & Sistem Pakar. Sedang menyelesaikan skripsi tentang klasifikasi penyakit daun padi berbasis CNN Transfer Learning (Farmonaut), dan telah menghasilkan 3 Hak Cipta Program Komputer terdaftar di DJKI.
 
 ---
 
 ## Live Preview
 
-Check out the live preview of the portfolio website here:  
-[**Live Demo**](https://codervai.vercel.app/)
+Lihat versi live dari portfolio ini di sini:
+[**Live Demo**](https://your-deploy-url.vercel.app/) <!-- ganti dengan URL deployment kamu -->
+
 ---
-### 🎯 Project Structure
+
+### 🎯 Struktur Proyek
+
 ```bash
 portfolio/
 ├── node_modules/
@@ -34,160 +36,132 @@ portfolio/
 ├── src/
 │   ├── assets/
 │   │   ├── css/
-│   │   │   ├── index.css
-│   │   │   └── tomorrow.css
-│   │   └── images/
+│   │   │   └── index.css
+│   │   ├── images/
+│   │   ├── sertifikat/
+│   │   ├── HKI/
+│   │   └── BNSP/
 │   ├── components/
-│   │   ├── ui/
-│   │   │   ├── Reusable Components/
-│   │   │   │   ├── badge.jsx
-│   │   │   │   ├── button.jsx
-│   │   │   │   ├── card.jsx
-│   │   │   │   ├── EducationLoader.jsx
-│   │   │   │   ├── evervault-card.jsx
-│   │   │   │   ├── flip-words.jsx
-│   │   │   │   ├── icon-cloud.jsx
-│   │   │   │   ├── meteors.jsx
-│   │   │   │   ├── sparkles-text.jsx
-│   │   │   │   └── tooltip.jsx
-│   │   │   │
-│   │   │   ├── Main Components/
-│   │   │   │   ├── AnimatedGrid.jsx
-│   │   │   │   ├── Contact.jsx
-│   │   │   │   ├── Education.jsx
-│   │   │   │   ├── enhanced-portfolio-card.jsx
-│   │   │   │   ├── Experience.jsx
-│   │   │   │   ├── global.jsx
-│   │   │   │   ├── Header.jsx
-│   │   │   │   ├── Hero.jsx
-│   │   │   │   ├── Home.jsx
-│   │   │   │   ├── PortfolioPage.jsx
-│   │   │   │   ├── Projects.jsx
-│   │   │   │   └── Skills.jsx
-│   │   └── lib/
-│   │       └── utils.js
+│   │   └── ui/
+│   │       ├── Header.jsx
+│   │       ├── EducationLoader.jsx
+│   │       └── ... (komponen UI lainnya)
 │   ├── pages/
-│   │   ├── About/
-│   │   │   └── About.jsx
-│   │   ├── Contact/
-│   │   │   └── Contact.jsx
-│   │   ├── Experience/
-│   │   │   └── Experience.jsx
-│   │   ├── Header/
-│   │   │   └── Header.jsx
 │   │   ├── Hero/
 │   │   │   └── Hero.jsx
+│   │   ├── About/
+│   │   │   └── About.jsx
+│   │   ├── Education/
+│   │   │   └── EducationSection.jsx
+│   │   ├── Experience/
+│   │   │   └── ExperienceSection.jsx
+│   │   ├── Certificates/
+│   │   │   └── CertificatesSection.jsx
 │   │   ├── Projects/
-│   │   │   ├── Projects.jsx
-│   │   │   └── testProjects.jsx
-│   │   └── Skills/
-│   │       └── Skills.jsx
+│   │   │   └── Projects.jsx
+│   │   └── Contact/
+│   │       └── Contact.jsx
 │   ├── App.jsx
 │   └── main.jsx
-├── Configuration Files/
-│   ├── .eslintrc.js
-│   ├── .gitignore
-│   ├── components.json
-│   ├── index.html
-│   ├── jsconfig.json
-│   ├── package-lock.json
-│   ├── package.json
-│   ├── postcss.config.js
-│   ├── README.md
-│   ├── tailwind.config.js
-│   ├── vercel.json
-│   └── vite.config.js
-
+├── .eslintrc.js
+├── .gitignore
+├── index.html
+├── jsconfig.json
+├── package.json
+├── postcss.config.js
+├── README.md
+├── tailwind.config.js
+└── vite.config.js
 ```
----
-
-## Sections of the Portfolio
-
-The portfolio website consists of the following sections:
-
-- **Home**: Introduction and a brief overview.
-- **Skills**: A detailed list of my technical skills.
-- **Experience**: My professional journey and work experience.
-- **Education**: Academic background and certifications.
-- **Projects**: A showcase of the projects I've worked on.
-- **Contact**: Information on how to reach out to me.
 
 ---
 
-## 💻 Technologies Used
-- **Frontend:** React.js with Vite
+## Bagian Portfolio
+
+Portfolio ini terdiri dari beberapa bagian:
+
+- **Home**: Perkenalan singkat dan ringkasan profil.
+- **About**: Cerita lebih lengkap tentang diri saya, riset, dan pencapaian.
+- **Experience**: Perjalanan profesional — organisasi, proyek, dan magang.
+- **Education**: Latar belakang akademik di Universitas Jenderal Achmad Yani Yogyakarta.
+- **Certificates**: Sertifikasi, Hak Cipta Program Komputer (DJKI), prestasi, organisasi, seminar, dan kursus.
+- **Projects**: Proyek-proyek yang pernah saya kerjakan.
+- **Contact**: Cara menghubungi saya.
+
+---
+
+## 💻 Teknologi yang Digunakan
+
+- **Frontend:** React.js dengan Vite
 - **Styling:** Tailwind CSS
-- **Animations:** Framer Motion
-- **Icons:** React Icons
+- **Animasi:** Framer Motion
+- **Ikon:** Lucide React
 - **Deployment:** Vercel
 
 ---
 
-## Installation ⬇️
+## Instalasi ⬇️
 
-You will need to download **Git** and **Node** to run this project.
+Kamu memerlukan **Git** dan **Node.js** untuk menjalankan proyek ini.
 
 ### Git
 
-- Download and install Git from the official website: [Git Downloads](https://git-scm.com/)
-- Verify the installation:
+- Unduh dan instal Git dari situs resminya: [Git Downloads](https://git-scm.com/)
+- Cek instalasi:
   ```bash
   git --version
   ```
 
 ### Node
 
-- Download and install Node.js from the official website: [Node.js Downloads](https://nodejs.org/)
-- Make sure you have the latest version of both Git and Node on your computer.
-- Verify the installation:
+- Unduh dan instal Node.js dari situs resminya: [Node.js Downloads](https://nodejs.org/)
+- Pastikan Git dan Node.js sudah versi terbaru.
+- Cek instalasi:
   ```bash
   node --version
   ```
 
-# Getting Started 🎯
+# Memulai 🎯
 
-### Fork and Clone the Repository 🚀
-1. Click the **Fork** button at the top-right corner of the page to create your own copy of the repository.
-2. After forking, open your terminal and run the following commands to clone the repo:
+### Clone Repository 🚀
 
-  ```bash
-  git clone https://github.com/seraprogrammer/portfolio.git
-  ```
-Navigate to the Project Directory 📂
-Once the repository is cloned, change your directory to the project folder:
+```bash
+git clone https://github.com/AlfindraHabib/portfolio.git
+```
+
+Masuk ke Folder Proyek 📂
+
 ```bash
 cd portfolio
 ```
 
-Install Dependencies ⚙️
-From the root directory of your project, install the necessary packages:
+Instal Dependensi ⚙️
+
 ```bash
 npm install
 ```
 
-Run the Development Server 🚀
-Start the development server to see your project live:
+Jalankan Development Server 🚀
+
 ```bash
 npm run dev
 ```
 
-View the Project 🌐
-Open your browser and visit http://localhost:5173/ to see the result! 🎉
+Buka Proyek 🌐
+Buka browser dan kunjungi `http://localhost:5173/` untuk melihat hasilnya! 🎉
 
-## 📝 License
-This project is licensed under the MIT License - see the LICENSE file for details.
+## 📝 Lisensi
 
----
-
-### 🤝 Contributing
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+Proyek ini dilisensikan di bawah MIT License — lihat file LICENSE untuk detailnya.
 
 ---
 
-<div align="center"> Made with ❤️ by Nazmul Hossain </div>
+## 📬 Kontak
 
+- **Email:** alfindrahabib384@gmail.com
+- **GitHub:** [@AlfindraHabib](https://github.com/AlfindraHabib)
+- **LinkedIn:** [Alfindra Habib Nugroho](https://www.linkedin.com/in/alfindra-habib-nugroho-173289265/)
+
+---
+
+<div align="center"> Dibuat dengan ❤️ oleh Alfindra Habib Nugroho </div>
