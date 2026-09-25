@@ -23,7 +23,7 @@ Halo! Saya **Alfindra Habib Nugroho**, mahasiswa S1 Informatika di Universitas J
 ## Live Preview
 
 Lihat versi live dari portfolio ini di sini:
-[**Live Demo**](https://your-deploy-url.vercel.app/) <!-- ganti dengan URL deployment kamu -->
+[**Live Demo**](https://your-deploy-url.vercel.app/)
 
 ---
 
@@ -42,25 +42,41 @@ portfolio/
 │   │   ├── HKI/
 │   │   └── BNSP/
 │   ├── components/
-│   │   └── ui/
-│   │       ├── Header.jsx
-│   │       ├── EducationLoader.jsx
-│   │       └── ... (komponen UI lainnya)
+│   │   ├── ui/
+│   │   │   ├── badge.jsx
+│   │   │   ├── button.jsx
+│   │   │   ├── card.jsx
+│   │   │   ├── cool-mode.jsx
+│   │   │   ├── EducationLoader.jsx
+│   │   │   ├── evervault-card.jsx
+│   │   │   ├── flip-words.jsx
+│   │   │   ├── icon-cloud.jsx
+│   │   │   ├── meteors.jsx
+│   │   │   ├── sparkles-text.jsx
+│   │   │   └── tooltip.jsx
+│   │   ├── AnimatedGrid.jsx
+│   │   ├── enhanced-portfolio-card.jsx
+│   │   └── globe.jsx
+│   ├── lib/
 │   ├── pages/
-│   │   ├── Hero/
-│   │   │   └── Hero.jsx
 │   │   ├── About/
 │   │   │   └── About.jsx
-│   │   ├── Education/
-│   │   │   └── EducationSection.jsx
-│   │   ├── Experience/
-│   │   │   └── ExperienceSection.jsx
 │   │   ├── Certificates/
-│   │   │   └── CertificatesSection.jsx
+│   │   │   └── Certificates.jsx
+│   │   ├── Contact/
+│   │   │   └── Contact.jsx
+│   │   ├── Education/
+│   │   │   └── Education.jsx
+│   │   ├── Experience/
+│   │   │   └── Experience.jsx
+│   │   ├── Header/
+│   │   │   └── Header.jsx
+│   │   ├── Hero/
+│   │   │   └── Hero.jsx
 │   │   ├── Projects/
 │   │   │   └── Projects.jsx
-│   │   └── Contact/
-│   │       └── Contact.jsx
+│   │   └── Skills/
+│   │       └── Skills.jsx
 │   ├── App.jsx
 │   └── main.jsx
 ├── .eslintrc.js
@@ -126,7 +142,7 @@ Kamu memerlukan **Git** dan **Node.js** untuk menjalankan proyek ini.
 ### Clone Repository 🚀
 
 ```bash
-git clone https://github.com/AlfindraHabib/portfolio.git
+git clone https://github.com/AlfindraHabib/Portofolio-Alfindra-Habib.git
 ```
 
 Masuk ke Folder Proyek 📂
