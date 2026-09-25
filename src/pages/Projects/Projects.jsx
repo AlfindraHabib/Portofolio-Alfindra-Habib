@@ -10,18 +10,12 @@ import siPadiImg from "/src/assets/images/Si Padi.jpeg";
 import agripadiImg from "/src/assets/images/Agripadi.jpeg";
 import padiWarasImg from "/src/assets/images/Padi Waras.jpeg";
 import portoImg from "/src/assets/images/porto.jpeg";
+import xcodeImg from "/src/assets/images/xcode.jpeg";
 
-// Sertifikat HKI
 import hkiPadiWaras from "/src/assets/HKI/sertifikat_HKI_PadiWaras.pdf";
 import hkiLuxeJogja from "/src/assets/HKI/sertifikat HKI - LuxeJogja.pdf";
 import hkiAgripadi from "/src/assets/HKI/sertifikat_HKI_Agripadi.pdf";
 
-// Tiap project: title, description, tech (array badge stack), color (aksen),
-// image (opsional — tanpa gambar akan tampil ikon Code2 dengan gradasi warna
-// project itu sendiri, seperti kartu HKI di halaman Certificates), imageFit,
-// githubLink, liveLink ("#" bila belum ada demo publik), hkiLink (opsional),
-// featured (opsional, memberi label "Featured"), category ("web" | "mobile",
-// dipakai filter di atas grid).
 const projects = [
   {
     title: "Luxe Jogja — Sistem Rekomendasi Penginapan",
@@ -49,6 +43,20 @@ const projects = [
       "https://github.com/AlfindraHabib/Si-Padi-Website-Pendeteksi-Penyakit-Daun-Padi-.git",
     liveLink: "#",
     hkiLink: hkiAgripadi,
+  },
+  {
+    title: "Xcode - Website Perusahaan Cyber Security & Penetration Testing",
+    category: "web",
+    description:
+      "Company profile untuk PT Xcode, perusahaan cyber security di Yogyakarta yang menyediakan layanan vulnerability assessment, penetration testing dengan framework PTES (Pre-engagement, Intelligence Gathering, Threat Modeling, Vulnerability Analysis, Exploitation, Post Exploitation, Reporting), IT security training & consulting, linux server hardening, software development, layanan SOC, hosting, serta dedicated server & colocation.",
+    tech: ["Next.js", "Tailwind CSS"],
+    image: xcodeImg,
+    color: "#ed649e",
+    imageFit: "contain",
+    githubLink:
+      "https://github.com/AlfindraHabib/MagangXcode",
+    liveLink: "#",
+    hkiLink: null,
   },
   {
     title: "Si Padi - Website Pendeteksi Penyakit Daun Padi Berbasis Citra",
