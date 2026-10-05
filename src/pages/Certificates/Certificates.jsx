@@ -41,6 +41,8 @@ import bem from "/src/assets/sertifikat/SERTIFIKAT ANGGOTA BEM UNJAYA 2024 - ALF
 import mobileapk from "/src/assets/sertifikat/Sertifikat Membuat mobile aplikasi dengan cepat dan efisien -Alfindra Habib.pdf";
 import magang from "/src/assets/sertifikat/SERTIFIKAT PKLMAGANG.pdf";
 import trc from "/src/assets/sertifikat/Sertifikat Seminar TRC - Alfindra Habib.pdf";
+import kelulusandatascience from "/src/assets/sertifikat/Sertifikat kelulusan-datascience.pdf"
+import pesertadatascience from "/src/assets/sertifikat/Sertifikat peserta-datascience.pdf"
 
 
 const pdfFiles = import.meta.glob("/src/assets/sertifikat/*.pdf", {
@@ -295,6 +297,32 @@ const rawCertificates = [
     issuer: "Muzaweb",
     note: "Materi basic sampai advanced menggunakan CMS WordPress",
     file: klswp,
+  },
+    {
+    id: "bootcamp-data-science-2026-kelulusan",
+    sortDate: "2026-08-31",
+    category: "seminar",
+    slug: "bootcamp-datascience-2026-kelulusan",
+    title:
+      "Data Science Bootcamp: Fundamental Model Data Science for Decision Making",
+    issuer: `FTTI · ${UNJAYA}`,
+    dateLabel: "Tanggal",
+    date: "31 Agustus 2026",
+    note: "Sertifikat Penghargaan · Peserta · berstatus Lulus",
+    file: kelulusandatascience
+  },
+  {
+    id: "bootcamp-data-science-2026-peserta",
+    sortDate: "2026-08-31",
+    category: "seminar",
+    slug: "bootcamp-datascience-2026-peserta",
+    title:
+      "Data Science Bootcamp: Fundamental Model Data Science for Decision Making (Sertifikat Peserta)",
+    issuer: `FTTI · ${UNJAYA}`,
+    dateLabel: "Tanggal",
+    date: "31 Agustus 2026",
+    note: "Sertifikat Penghargaan · Peserta · bekal di bidang Data Science dan Machine Learning",
+    file: pesertadatascience
   },
 
   // ---- Kursus online ----

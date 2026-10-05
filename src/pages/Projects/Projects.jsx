@@ -2,7 +2,16 @@ import { ReactLenis } from "lenis/react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useMemo, useRef, useState } from "react";
 import PropTypes from "prop-types";
-import { Code2, Eye, Layers, Medal, Smartphone, Sparkles, X } from "lucide-react";
+import {
+  CheckCircle2,
+  Code2,
+  Eye,
+  Layers,
+  Medal,
+  Smartphone,
+  Sparkles,
+  X,
+} from "lucide-react";
 
 import luxeJogjaImg from "/src/assets/images/luxe-jogja.jpeg";
 import farmonautImg from "/src/assets/images/farmonaut.jpeg";
@@ -16,7 +25,7 @@ import hkiPadiWaras from "/src/assets/HKI/sertifikat_HKI_PadiWaras.pdf";
 import hkiLuxeJogja from "/src/assets/HKI/sertifikat HKI - LuxeJogja.pdf";
 import hkiAgripadi from "/src/assets/HKI/sertifikat_HKI_Agripadi.pdf";
 
-const projects = [
+const rawProjects = [
   {
     title: "Luxe Jogja — Sistem Rekomendasi Penginapan",
     category: "web",
@@ -53,8 +62,7 @@ const projects = [
     image: xcodeImg,
     color: "#ed649e",
     imageFit: "contain",
-    githubLink:
-      "https://github.com/AlfindraHabib/MagangXcode",
+    githubLink: "https://github.com/AlfindraHabib/MagangXcode",
     liveLink: "#",
     hkiLink: null,
   },
@@ -82,6 +90,7 @@ const projects = [
     image: padiWarasImg,
     color: "#5196fd",
     imageFit: "cover",
+    // TODO: ganti dengan link repo asli
     githubLink: "https://github.com/username/padi-waras",
     liveLink: "https://padiwaras.my.id",
     hkiLink: hkiPadiWaras,
@@ -95,7 +104,8 @@ const projects = [
     image: farmonautImg,
     color: "#4ade80",
     imageFit: "contain",
-    githubLink: "https://github.com/AlfindraHabib/Farmonaut-APK-Pendeteksi-Penyakit-Padi-",
+    githubLink:
+      "https://github.com/AlfindraHabib/Farmonaut-APK-Pendeteksi-Penyakit-Padi-",
     liveLink: "#",
     hkiLink: null,
   },
@@ -113,6 +123,90 @@ const projects = [
     featured: true,
   },
 ];
+
+// Ringkasan singkat + poin hasil per proyek, dicocokkan lewat awalan judul.
+// `priority` mengatur urutan tampil (angka kecil = paling depan).
+const META = [
+  [
+    "Luxe Jogja",
+    {
+      priority: 1,
+      summary: "Rekomendasi penginapan di area wisata Yogyakarta.",
+      highlights: [
+        "Hak Cipta DJKI (2025)",
+        "Frontend React + backend Flask",
+        "Sudah live",
+      ],
+    },
+  ],
+  [
+    "Padi Waras",
+    {
+      priority: 2,
+      summary:
+        "Sistem pakar klasifikasi penyakit tanaman padi dengan Certainty Factor.",
+      highlights: ["Hak Cipta DJKI (2026)", "React + Vite + Flask", "Sudah live"],
+    },
+  ],
+  [
+    "Agripadi",
+    {
+      priority: 3,
+      summary: "Aplikasi mobile sistem pakar deteksi hama dan penyakit padi.",
+      highlights: [
+        "2 Hak Cipta DJKI",
+        "Flutter + Flask",
+        "Dikembangkan bersama dosen",
+      ],
+    },
+  ],
+  [
+    "Farmonaut",
+    {
+      priority: 4,
+      summary: "Aplikasi mobile klasifikasi penyakit daun padi berbasis citra.",
+      highlights: [
+        "Akurasi ±97%",
+        "Membandingkan MobileNetV2, VGG16, NASNetMobile",
+        "Flutter + Flask",
+      ],
+    },
+  ],
+  [
+    "Si Padi",
+    {
+      priority: 5,
+      summary: "Website pendeteksi penyakit daun padi berbasis citra.",
+      highlights: ["React + Flask", "Sudah live"],
+    },
+  ],
+  [
+    "Xcode",
+    {
+      priority: 6,
+      summary: "Company profile PT Xcode, perusahaan cyber security di Yogyakarta.",
+      highlights: ["Proyek saat magang", "Next.js + Tailwind CSS"],
+    },
+  ],
+  [
+    "Portfolio",
+    {
+      priority: 7,
+      summary: "Portofolio pribadi: proyek, sertifikat, dan HKI.",
+      highlights: ["React + Vite + Framer Motion", "Sudah live"],
+    },
+  ],
+];
+
+const projects = rawProjects
+  .map((p) => ({
+    ...p,
+    ...(META.find(([key]) => p.title.startsWith(key))?.[1] ?? {}),
+  }))
+  .sort((a, b) => (a.priority ?? 99) - (b.priority ?? 99));
+
+const isLive = (p) => Boolean(p.liveLink && p.liveLink !== "#");
+const liveCount = projects.filter(isLive).length;
 
 /* ---------- Icons ---------- */
 
@@ -149,18 +243,26 @@ const MedalIcon = ({ color = "currentColor", size = 20 }) => (
 
 /* ---------- Components ---------- */
 
-function ProjectLink({ href, label, color, icon: Icon }) {
+// `primary` dipakai untuk Live Demo: tombol terisi warna proyek supaya
+// menjadi aksi utama yang paling mudah ditemukan.
+function ProjectLink({ href, label, color, icon: Icon, primary = false }) {
+  const ink = primary ? "#0b1020" : color;
   return (
     <motion.a
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="flex items-center gap-2 rounded-lg border border-white/10 bg-white/[0.03] px-3 py-1.5 transition-colors duration-300 hover:border-white/25 hover:bg-white/[0.08]"
+      className={`flex items-center gap-2 rounded-lg border px-3 py-1.5 transition-colors duration-300 ${
+        primary
+          ? "border-transparent"
+          : "border-white/10 bg-white/[0.03] hover:border-white/25 hover:bg-white/[0.08]"
+      }`}
+      style={primary ? { backgroundColor: color } : undefined}
       whileHover={{ y: -2 }}
       transition={{ type: "spring", stiffness: 400 }}
     >
-      <Icon color={color} size={16} />
-      <span className="text-xs font-medium" style={{ color }}>
+      <Icon color={ink} size={16} />
+      <span className="text-xs font-semibold" style={{ color: ink }}>
         {label}
       </span>
     </motion.a>
@@ -172,6 +274,23 @@ function TechBadge({ children }) {
     <span className="rounded-full border border-white/10 bg-white/[0.04] px-2.5 py-1 text-[11px] font-medium text-gray-300">
       {children}
     </span>
+  );
+}
+
+function Highlights({ items, color }) {
+  if (!items?.length) return null;
+  return (
+    <ul className="mt-4 space-y-1.5">
+      {items.map((h) => (
+        <li key={h} className="flex items-start gap-2 text-xs text-gray-300">
+          <CheckCircle2
+            className="mt-0.5 h-3.5 w-3.5 shrink-0"
+            style={{ color }}
+          />
+          <span>{h}</span>
+        </li>
+      ))}
+    </ul>
   );
 }
 
@@ -218,7 +337,7 @@ FilterBar.propTypes = {
   counts: PropTypes.objectOf(PropTypes.number).isRequired,
 };
 
-// Pratinjau besar: gambar utuh, deskripsi lengkap, dan semua tautan.
+// Pratinjau besar: gambar utuh, deskripsi lengkap, poin hasil, dan semua tautan.
 function Lightbox({ project, onClose }) {
   useEffect(() => {
     const onKey = (e) => e.key === "Escape" && onClose();
@@ -231,7 +350,7 @@ function Lightbox({ project, onClose }) {
     };
   }, [onClose]);
 
-  const hasLive = Boolean(project.liveLink && project.liveLink !== "#");
+  const hasLive = isLive(project);
 
   return (
     <motion.div
@@ -254,7 +373,9 @@ function Lightbox({ project, onClose }) {
       >
         <div
           className="h-1 w-full shrink-0"
-          style={{ background: `linear-gradient(90deg, ${project.color}, transparent 130%)` }}
+          style={{
+            background: `linear-gradient(90deg, ${project.color}, transparent 130%)`,
+          }}
         />
 
         <button
@@ -272,7 +393,9 @@ function Lightbox({ project, onClose }) {
               src={project.image}
               alt={project.title}
               className={`h-full w-full ${
-                project.imageFit === "contain" ? "object-contain p-4" : "object-cover"
+                project.imageFit === "contain"
+                  ? "object-contain p-4"
+                  : "object-cover"
               }`}
             />
           ) : (
@@ -282,15 +405,24 @@ function Lightbox({ project, onClose }) {
                 background: `radial-gradient(circle at 30% 20%, ${project.color}33, transparent 60%)`,
               }}
             >
-              <Code2 className="h-16 w-16 opacity-40" style={{ color: project.color }} strokeWidth={1.25} />
+              <Code2
+                className="h-16 w-16 opacity-40"
+                style={{ color: project.color }}
+                strokeWidth={1.25}
+              />
             </div>
           )}
         </div>
 
         <div className="shrink-0 space-y-4 overflow-y-auto p-5 sm:p-6">
           <div>
-            <h3 className="pr-8 text-lg font-bold text-white sm:text-xl">{project.title}</h3>
-            <p className="mt-2 text-sm leading-relaxed text-gray-400">{project.description}</p>
+            <h3 className="pr-8 text-lg font-bold text-white sm:text-xl">
+              {project.title}
+            </h3>
+            <p className="mt-2 text-sm leading-relaxed text-gray-400">
+              {project.description}
+            </p>
+            <Highlights items={project.highlights} color={project.color} />
           </div>
 
           {project.tech?.length > 0 && (
@@ -302,12 +434,28 @@ function Lightbox({ project, onClose }) {
           )}
 
           <div className="flex flex-wrap items-center gap-2 pt-1">
-            <ProjectLink href={project.githubLink} label="Code" color={project.color} icon={GithubIcon} />
             {hasLive && (
-              <ProjectLink href={project.liveLink} label="Live" color={project.color} icon={GlobeIcon} />
+              <ProjectLink
+                primary
+                href={project.liveLink}
+                label="Live Demo"
+                color={project.color}
+                icon={GlobeIcon}
+              />
             )}
+            <ProjectLink
+              href={project.githubLink}
+              label="Code"
+              color={project.color}
+              icon={GithubIcon}
+            />
             {project.hkiLink && (
-              <ProjectLink href={project.hkiLink} label="HKI" color={project.color} icon={MedalIcon} />
+              <ProjectLink
+                href={project.hkiLink}
+                label="HKI"
+                color={project.color}
+                icon={MedalIcon}
+              />
             )}
           </div>
         </div>
@@ -320,6 +468,7 @@ Lightbox.propTypes = {
   project: PropTypes.shape({
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
+    highlights: PropTypes.arrayOf(PropTypes.string),
     image: PropTypes.string,
     imageFit: PropTypes.string,
     tech: PropTypes.arrayOf(PropTypes.string),
@@ -335,6 +484,8 @@ function Card({
   i,
   title,
   description,
+  summary,
+  highlights,
   image,
   tech,
   color,
@@ -361,16 +512,24 @@ function Card({
     >
       <div
         className={`group relative h-full w-full overflow-hidden rounded-2xl border bg-zinc-900 shadow-xl shadow-black/30 transition-all duration-300 hover:shadow-2xl ${
-          featured ? "border-amber-400/30" : "border-white/10 hover:border-white/25"
+          featured
+            ? "border-amber-400/30"
+            : "border-white/10 hover:border-white/25"
         }`}
         style={{ "--glow": color, boxShadow: "0 0 0 0 transparent" }}
-        onMouseEnter={(e) => (e.currentTarget.style.boxShadow = `0 20px 60px -20px ${color}55`)}
-        onMouseLeave={(e) => (e.currentTarget.style.boxShadow = "0 0 0 0 transparent")}
+        onMouseEnter={(e) =>
+          (e.currentTarget.style.boxShadow = `0 20px 60px -20px ${color}55`)
+        }
+        onMouseLeave={(e) =>
+          (e.currentTarget.style.boxShadow = "0 0 0 0 transparent")
+        }
       >
         {/* Garis aksen atas, senada dengan kartu Certificates */}
         <div
           className="h-1 w-full"
-          style={{ background: `linear-gradient(90deg, ${color}, transparent 130%)` }}
+          style={{
+            background: `linear-gradient(90deg, ${color}, transparent 130%)`,
+          }}
         />
 
         <div className="flex h-[calc(100%-4px)] flex-col">
@@ -451,6 +610,12 @@ function Card({
             </div>
 
             <div className="absolute top-3 right-3 flex flex-col items-end gap-1.5">
+              {hasLive && (
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-black/50 px-3 py-1 text-xs font-medium text-emerald-300 backdrop-blur-md">
+                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+                  Live
+                </span>
+              )}
               {featured && (
                 <span className="inline-flex items-center gap-1 rounded-full bg-black/50 px-3 py-1 text-xs font-medium text-amber-300 backdrop-blur-md">
                   <Sparkles className="h-3 w-3" />
@@ -480,9 +645,11 @@ function Card({
               <h2 className="mb-2 text-lg font-bold text-white md:mb-3 md:text-xl">
                 {title}
               </h2>
-              <p className="line-clamp-4 text-sm leading-relaxed text-gray-400">
-                {description}
+              <p className="line-clamp-2 text-sm leading-relaxed text-gray-400">
+                {summary ?? description}
               </p>
+
+              <Highlights items={highlights} color={color} />
 
               {tech?.length > 0 && (
                 <div className="mt-4 flex flex-wrap gap-1.5">
@@ -496,12 +663,28 @@ function Card({
             <div className="mt-4 pt-4">
               <div className="mb-4 h-px w-full bg-gray-800" />
               <div className="flex flex-wrap items-center gap-2">
-                <ProjectLink href={githubLink} label="Code" color={color} icon={GithubIcon} />
                 {hasLive && (
-                  <ProjectLink href={liveLink} label="Live" color={color} icon={GlobeIcon} />
+                  <ProjectLink
+                    primary
+                    href={liveLink}
+                    label="Live Demo"
+                    color={color}
+                    icon={GlobeIcon}
+                  />
                 )}
+                <ProjectLink
+                  href={githubLink}
+                  label="Code"
+                  color={color}
+                  icon={GithubIcon}
+                />
                 {hkiLink && (
-                  <ProjectLink href={hkiLink} label="HKI" color={color} icon={MedalIcon} />
+                  <ProjectLink
+                    href={hkiLink}
+                    label="HKI"
+                    color={color}
+                    icon={MedalIcon}
+                  />
                 )}
               </div>
             </div>
@@ -537,7 +720,8 @@ export default function Projects() {
     if (!isDragging.current) return;
     e.preventDefault();
     const x = e.pageX - scrollRef.current.offsetLeft;
-    scrollRef.current.scrollLeft = scrollLeftStart.current - (x - startX.current) * 1.2;
+    scrollRef.current.scrollLeft =
+      scrollLeftStart.current - (x - startX.current) * 1.2;
   };
 
   const hkiCount = projects.filter((p) => p.hkiLink).length;
@@ -593,11 +777,17 @@ export default function Projects() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.5 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="relative mx-auto mb-10 flex max-w-lg items-center justify-center gap-3 px-4 md:mb-12"
+            className="relative mx-auto mb-10 flex max-w-2xl items-center justify-center gap-3 px-4 md:mb-12"
           >
             <div className="flex-1 rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3 text-center backdrop-blur-sm">
-              <div className="text-2xl font-bold text-white">{projects.length}</div>
+              <div className="text-2xl font-bold text-white">
+                {projects.length}
+              </div>
               <div className="text-xs text-gray-400">Projects</div>
+            </div>
+            <div className="flex-1 rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3 text-center backdrop-blur-sm">
+              <div className="text-2xl font-bold text-white">{liveCount}</div>
+              <div className="text-xs text-gray-400">Live Demo</div>
             </div>
             <div className="flex-1 rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3 text-center backdrop-blur-sm">
               <div className="text-2xl font-bold text-white">{hkiCount}</div>
@@ -609,7 +799,11 @@ export default function Projects() {
             </div>
           </motion.div>
 
-          <FilterBar active={filter} onChange={setFilter} counts={filterCounts} />
+          <FilterBar
+            active={filter}
+            onChange={setFilter}
+            counts={filterCounts}
+          />
 
           <div className="relative">
             <div className="pointer-events-none absolute left-0 top-0 bottom-6 w-8 md:w-16 bg-gradient-to-r from-slate-950 to-transparent z-10 xl:hidden" />
@@ -642,7 +836,10 @@ export default function Projects() {
 
       <AnimatePresence>
         {activeProject && (
-          <Lightbox project={activeProject} onClose={() => setActiveProject(null)} />
+          <Lightbox
+            project={activeProject}
+            onClose={() => setActiveProject(null)}
+          />
         )}
       </AnimatePresence>
     </ReactLenis>
@@ -659,16 +856,24 @@ ProjectLink.propTypes = {
   label: PropTypes.string.isRequired,
   color: PropTypes.string.isRequired,
   icon: PropTypes.elementType.isRequired,
+  primary: PropTypes.bool,
 };
 
 TechBadge.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
+Highlights.propTypes = {
+  items: PropTypes.arrayOf(PropTypes.string),
+  color: PropTypes.string.isRequired,
+};
+
 Card.propTypes = {
   i: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
+  summary: PropTypes.string,
+  highlights: PropTypes.arrayOf(PropTypes.string),
   image: PropTypes.string,
   tech: PropTypes.arrayOf(PropTypes.string),
   color: PropTypes.string.isRequired,
